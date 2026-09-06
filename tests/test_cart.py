@@ -96,5 +96,13 @@ def test_user_can_add_two_products_and_see_details(
     products_names = cart_page.inventory_item_name.all_text_contents()
     assert "Sauce Labs Backpack" in products_names
     assert "Sauce Labs Bike Light" in  products_names
-    #expect(cart_page.inventory_item_name.nth(0)).to_have_text("Sauce Labs Backpack")
-    #expect(cart_page.inventory_item_name.nth(1)).to_have_text("Sauce Labs Bike Light")
+   
+
+    backpack = cart_page.get_product("Sauce Labs Backpack")
+    backpack_price = cart_page.get_product_price(backpack)
+    expect(backpack_price).to_have_text("$29.99")
+
+    bike_light = cart_page.get_product("Sauce Labs Bike Light")
+    bike_light_price = cart_page.get_product_price(bike_light)
+    expect(bike_light_price).to_have_text("$9.99")
+    
