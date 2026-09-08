@@ -17,9 +17,11 @@ def login_page(page: Page) -> LoginPage:
 def inventory_page(page: Page) -> InventoryPage:
     return InventoryPage(page)
 
+
 @pytest.fixture
 def cart_page(page: Page) -> CartPage:
     return CartPage(page)
+
 
 @pytest.fixture
 def checkout_page(page: Page) -> CheckoutPage:
