@@ -10,6 +10,7 @@ class CartPage:
         self.remove_backpack_from_cart = page.locator('[data-test="remove-sauce-labs-backpack"]')
         self.shopping_cart_badge = page.locator('[data-test="shopping-cart-badge"]')
         self.cart_items = page.locator('[data-test="inventory-item"]')
+        self.checkout = page.locator('[data-test="checkout"]')
 
     def remove_backpack(self):
         self.remove_backpack_from_cart.click()
@@ -19,5 +20,6 @@ class CartPage:
 
     def get_product_price(self, product):
         return product.locator('[data-test="inventory-item-price"]')
-    
-        
+
+    def go_to_checkout(self):
+        self.checkout.click()

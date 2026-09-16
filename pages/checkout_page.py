@@ -10,7 +10,7 @@ class CheckoutPage:
         self.first_name = page.locator('[data-test="firstName"]')
         self.last_name = page.locator('[data-test="lastName"]')
         self.postal_code = page.locator('[data-test="postalCode"]')
-
+        self.checkout_title = page.locator('[data-test="title"]')
 
     def continue_checkout(self):
         self.continue_button.click()
