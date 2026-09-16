@@ -8,7 +8,8 @@ from playwright.sync_api import Page, expect
         ("", "", "", "First Name is required"),
         ("Jan", "", "", "Last Name is required"),
         ("Jan", "Kowalski", "", "Postal Code is required")
-    ]
+    ],
+    ids=["missing-first_name", "missing-last_name", "missing-postal_code"],
 )
 def test_user_cannot_go_to_overview_without_valid_info(
     page: Page,

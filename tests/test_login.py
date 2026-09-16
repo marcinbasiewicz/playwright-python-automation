@@ -45,6 +45,7 @@ def test_user_cannot_login_with_invalid_password(
         ("", "secret_sauce", "Username is required"),
         ("standard_user", "", "Password is required"),
     ],
+    ids=["missing-username", "missing-password"],
 )
 def test_login_validation(
     page: Page,
