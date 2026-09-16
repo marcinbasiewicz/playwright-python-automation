@@ -33,7 +33,12 @@ def test_user_cannot_go_to_overview_without_valid_info(
 
 
 def test_user_can_go_to_checkout_overview_with_valid_info(
-    page: Page, login_page, inventory_page, cart_page, checkout_page
+    page: Page,
+    login_page,
+    inventory_page,
+    cart_page,
+    checkout_page,
+    checkout_overview_page,
 ):
     login_page.login("standard_user", "secret_sauce")
     inventory_page.add_to_cart_backpack()
@@ -41,5 +46,25 @@ def test_user_can_go_to_checkout_overview_with_valid_info(
     cart_page.go_to_checkout()
     checkout_page.fill_checkout_info("Jan", "Kowalski", "90-001")
     checkout_page.continue_checkout()
-    expect(checkout_page.checkout_title).to_contain_text("Checkout: Overview")
+    expect(checkout_overview_page.checkout_title).to_have_text("Checkout: Overview")
     expect(page).to_have_url("https://www.saucedemo.com/checkout-step-two.html")
+
+
+def test_user_can_complete_checkout(
+    page: Page,
+    login_page,
+    inventory_page,
+    cart_page,
+    checkout_page,
+    checkout_overview_page,
+    checkout_complete_page,
+):
+    login_page.login("standard_user", "secret_sauce")
+    inventory_page.add_to_cart_backpack()
+    inventory_page.go_to_cart()
+    cart_page.go_to_checkout()
+    checkout_page.fill_checkout_info("Jan", "Kowalski", "90-001")
+    checkout_page.continue_checkout()
+    checkout_overview_page.finish_checkout()
+    expect(checkout_complete_page.checkout_title).to_have_text("Checkout: Complete!")
+    expect(page).to_have_url("https://www.saucedemo.com/checkout-complete.html")
