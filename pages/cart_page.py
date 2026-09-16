@@ -14,6 +14,7 @@ class CartPage:
         self.shopping_cart_badge = page.locator('[data-test="shopping-cart-badge"]')
         self.cart_items = page.locator('[data-test="inventory-item"]')
         self.checkout = page.locator('[data-test="checkout"]')
+        self.cart_title = page.locator('[data-test="title"]')
 
     def remove_backpack(self):
         self.remove_backpack_from_cart.click()
