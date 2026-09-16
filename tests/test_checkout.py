@@ -7,7 +7,7 @@ from playwright.sync_api import Page, expect
     [
         ("", "", "", "First Name is required"),
         ("Jan", "", "", "Last Name is required"),
-        ("Jan", "Kowalski", "", "Postal Code is required")
+        ("Jan", "Kowalski", "", "Postal Code is required"),
     ],
     ids=["missing-first_name", "missing-last_name", "missing-postal_code"],
 )
@@ -20,20 +20,13 @@ def test_user_cannot_go_to_overview_without_valid_info(
     first_name,
     last_name,
     postal_code,
-    expected_error
+    expected_error,
 ):
-    login_page.login(
-                "standard_user",
-                "secret_sauce"
-            )
+    login_page.login("standard_user", "secret_sauce")
     inventory_page.add_to_cart_backpack()
     inventory_page.go_to_cart()
     cart_page.go_to_checkout()
-    checkout_page.fill_checkout_info(
-        first_name,
-        last_name,
-        postal_code
-    )
+    checkout_page.fill_checkout_info(first_name, last_name, postal_code)
     checkout_page.continue_checkout()
     expect(checkout_page.error_message).to_contain_text(expected_error)
     expect(page).to_have_url("https://www.saucedemo.com/checkout-step-one.html")

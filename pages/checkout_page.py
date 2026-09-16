@@ -1,5 +1,6 @@
 from playwright.sync_api import Page
 
+
 class CheckoutPage:
 
     def __init__(self, page: Page):
@@ -19,4 +20,3 @@ class CheckoutPage:
         self.first_name.fill(first_name)
         self.last_name.fill(last_name)
         self.postal_code.fill(postal_code)
-        
