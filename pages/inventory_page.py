@@ -22,6 +22,8 @@ class InventoryPage:
             '[data-test="product-sort-container"]'
         )
         self.inventory_item_price = page.locator('[data-test="inventory-item-price"]')
+        self.menu_button = page.locator("#react-burger-menu-btn")
+        self.logout_button = page.locator('[data-test="logout-sidebar-link"]')
 
     def add_to_cart_backpack(self):
         self.add_to_cart_sauce_labs_backpack.click()
@@ -50,3 +52,9 @@ class InventoryPage:
             prices_list.append(price)
 
         return prices_list
+
+    def open_menu(self):
+        self.menu_button.click()
+
+    def logout(self):
+        self.logout_button.click()

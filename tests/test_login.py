@@ -40,3 +40,11 @@ def test_login_validation(
     expect(page).to_have_url("https://www.saucedemo.com/")
 
     expect(login_page.error_message).to_contain_text(expected_error)
+
+
+def test_user_can_logout(page: Page, login_page, inventory_page):
+    login_page.login("standard_user", "secret_sauce")
+    inventory_page.open_menu()
+    inventory_page.logout()
+    expect(page).to_have_url("https://www.saucedemo.com/")
+    expect(login_page.login_button).to_be_visible()
