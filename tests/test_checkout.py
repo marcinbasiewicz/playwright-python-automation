@@ -66,7 +66,7 @@ def test_user_can_complete_checkout(
     checkout_page.fill_checkout_info("Jan", "Kowalski", "90-001")
     checkout_page.continue_checkout()
     checkout_overview_page.finish_checkout()
-    expect(checkout_complete_page.checkout_title).to_contain_text("Checkout: Complete")
+    expect(checkout_complete_page.checkout_title).to_have_text("Checkout: Complete!")
     expect(page).to_have_url("https://www.saucedemo.com/checkout-complete.html")
 
 
