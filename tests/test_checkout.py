@@ -85,6 +85,7 @@ def test_item_total_equals_sum_of_item_prices(
     cart_page.go_to_checkout()
     checkout_page.fill_checkout_info("Jan", "Kowalski", "90-001")
     checkout_page.continue_checkout()
+    expect(checkout_overview_page.inventory_item_price).to_have_count(2)
     sum_of_item_prices = checkout_overview_page.get_sum_of_item_prices()
     item_total = checkout_overview_page.get_item_total()
 
