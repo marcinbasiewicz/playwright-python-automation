@@ -12,6 +12,10 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
   
     steps:
       - name: Checkout repository
@@ -25,8 +29,8 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Chromium
-        run: python -m playwright install --with-deps chromium
+      - name: Install browser
+        run: python -m playwright install --with-deps ${{ matrix.browser }}
 
       - name: Run tests
-        run: pytest
+        run: pytest --browser ${{ matrix.browser }}
