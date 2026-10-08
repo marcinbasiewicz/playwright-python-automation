@@ -10,13 +10,36 @@ on:
       timezone: 'Europe/Warsaw'
 
 jobs:
-  tests:
+  pr-tests:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+      
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
 
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+
+      - name: Run tests
+        run: pytest --browser chromium
+
+  cross-browser-tests:
+    if: github.event_name == 'push' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+     
     strategy:
       matrix:
         browser: [chromium, firefox, webkit]
-  
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
