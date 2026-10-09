@@ -74,4 +74,23 @@ jobs:
         run: python -m playwright install --with-deps ${{ matrix.browser }}
 
       - name: Run tests
-        run: pytest --browser ${{ matrix.browser }}
+        run: |
+          pytest --browser ${{ matrix.browser }} \
+            --junitxml=test-results.xml \
+            --tracing retain-on-failure \
+            --screenshot only-on-failure
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results-${{ matrix.browser }}
+          path: test-results.xml
+
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-artifacts-${{ matrix.browser }}
+          path: test-results/ 
+
