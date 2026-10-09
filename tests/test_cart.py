@@ -39,7 +39,7 @@ def test_user_can_add_backpack_to_cart_and_see_item_and_price_in_cart(
     inventory_page.add_to_cart_backpack()
 
     inventory_page.go_to_cart()
-    expect(cart_page.cart_title).to_have_text("Your Cart")
+    expect(cart_page.cart_title).to_have_text("Your Carts")
     expect(page).to_have_url("https://www.saucedemo.com/cart.html")
     expect(cart_page.inventory_item_name).to_have_text("Sauce Labs Backpack")
     expect(cart_page.inventory_item_price).to_have_text("$29.99")
