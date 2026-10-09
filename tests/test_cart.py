@@ -6,7 +6,7 @@ def test_user_can_add_product_to_cart(page: Page, login_page, inventory_page):
     inventory_page.add_to_cart_backpack()
 
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
-    expect(inventory_page.shopping_cart_badge).to_have_text("2")
+    expect(inventory_page.shopping_cart_badge).to_have_text("1")
 
 
 def test_user_can_add_two_products_to_cart(page: Page, login_page, inventory_page):
