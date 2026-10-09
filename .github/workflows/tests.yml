@@ -30,10 +30,11 @@ jobs:
         run: python -m playwright install --with-deps chromium
 
       - name: Run tests
-        run: pytest --browser chromium \
-          --junitxml=test-results.xml \
-          --tracing retain-on-failure \
-          --screenshot only-on-failure
+        run: |
+          pytest --browser chromium \
+            --junitxml=test-results.xml \
+            --tracing retain-on-failure \
+            --screenshot only-on-failure
 
       - name: Upload test results
         if: always()
