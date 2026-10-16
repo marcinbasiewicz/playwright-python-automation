@@ -24,6 +24,9 @@ class InventoryPage:
         self.inventory_item_price = page.locator('[data-test="inventory-item-price"]')
         self.menu_button = page.locator("#react-burger-menu-btn")
         self.logout_button = page.locator('[data-test="logout-sidebar-link"]')
+        self.backpack_details = page.locator(
+            '[data-test="inventory-item-name"]'
+        ).filter(has_text="Sauce Labs Backpack")
 
     def add_to_cart_backpack(self):
         self.add_to_cart_sauce_labs_backpack.click()
@@ -58,3 +61,6 @@ class InventoryPage:
 
     def logout(self):
         self.logout_button.click()
+
+    def open_backpack_details(self):
+        self.backpack_details.click()

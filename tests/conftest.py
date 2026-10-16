@@ -7,6 +7,7 @@ from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.checkout_overview_page import CheckoutOverviewPage
 from pages.checkout_complete_page import CheckoutCompletePage
+from pages.product_details_page import ProductDetailsPage
 
 
 @pytest.fixture
@@ -38,3 +39,8 @@ def checkout_overview_page(page: Page) -> CheckoutOverviewPage:
 @pytest.fixture
 def checkout_complete_page(page: Page) -> CheckoutCompletePage:
     return CheckoutCompletePage(page)
+
+
+@pytest.fixture
+def product_details_page(page: Page) -> ProductDetailsPage:
+    return ProductDetailsPage(page)
